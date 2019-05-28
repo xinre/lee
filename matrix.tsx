@@ -1,3 +1,6 @@
+/**
+ * 矩阵
+ */
 var updateMatrix = function(matrix:Array<Array<number>>):Array<Array<number>>{
     let i:number=0;
     let k:number=0;

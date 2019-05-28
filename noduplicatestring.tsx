@@ -1,3 +1,6 @@
+/**
+ * 无重复最长字串
+ */
 let teststring:string = "pwwkew";
 
 const dealstring = (str:string):string => {

@@ -1,3 +1,6 @@
+/**
+ * 回文字串
+ */
 let originalString:string = "bababbd";
 
 let dealString = (str:string):string[] => {

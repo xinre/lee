@@ -1,3 +1,6 @@
+/**
+ * z形排列
+ */
 let teststr:string = "LEETCODEISHIRING";
 
 let zarangFun = (teststr:string,row:number):string => {
