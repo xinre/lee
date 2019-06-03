@@ -63,3 +63,5 @@ let threesum = (arr:number[]):number[][] => {
 }
 
 console.log(threesum(testarr));
+
+export = qeuqarr;
