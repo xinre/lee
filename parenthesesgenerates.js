@@ -1,31 +1,18 @@
 /**
  * 括号生成 未完
  */
-var qeuqarr = function (arr1, arr2) {
-    var juagearr2 = [];
-    var juagearr = [];
-    if (arr1.length == arr2.length) {
-        for (var i = 0; i < arr1.length; i++) {
-            for (var j = 0; j < arr2.length; j++) {
-                if (juagearr.indexOf(j) == -1) {
-                    if (juagearr2.indexOf(i) == -1) {
-                        if (arr1[i] == arr2[j]) {
-                            juagearr.push(j);
-                            juagearr2.push(i);
-                        }
-                    }
-                }
-            }
-        }
-        if (arr1.length == juagearr.length) {
-            return true;
-        }
-        else {
-            return false;
-        }
+var qeuqarr = function (arr, arr1) {
+    var juage = true;
+    if (arr.length != arr1.length) {
+        return false;
     }
     else {
-        return false;
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] != arr1[i]) {
+                juage = false;
+            }
+        }
+        return juage;
     }
 };
 var recursivestr = function (sumstrarr, nowarr, valuearr, count, num) {
@@ -35,15 +22,15 @@ var recursivestr = function (sumstrarr, nowarr, valuearr, count, num) {
         }
         if (count >= num * 2) {
             var renum = nowarr.slice(0, num * 2);
-            // let juage:boolean = true;
-            // for(let f:number=0;f<sumstrarr.length;f++){
-            //     if(qeuqarr(renum,sumstrarr[f])){
-            //         juage=false;
-            //     }
-            // }
-            // if(juage){
-            sumstrarr.push(renum);
-            // }
+            var juage = true;
+            for (var f = 0; f < sumstrarr.length; f++) {
+                if (qeuqarr(renum, sumstrarr[f])) {
+                    juage = false;
+                }
+            }
+            if (juage) {
+                sumstrarr.push(renum);
+            }
         }
         else {
             if (i != 0) {
@@ -70,7 +57,31 @@ var parenthesegen = function (num) {
     var count = 0;
     var valuearr = [-1, 1];
     recursivestr(sumstrarr, nowarr, valuearr, count, num);
-    console.log(sumstrarr);
+    for (var _i = 0, sumstrarr_1 = sumstrarr; _i < sumstrarr_1.length; _i++) {
+        var item = sumstrarr_1[_i];
+        var topval = 0;
+        var botval = 0;
+        var nowstr = '';
+        for (var items = 0; items < item.length; items++) {
+            if (Number(item[items]) == 1) {
+                nowstr = nowstr + ')';
+            }
+            else {
+                nowstr = nowstr + '(';
+            }
+            if (items < num) {
+                topval = topval + Number(item[items]);
+            }
+            else {
+                botval = botval + Number(item[items]);
+            }
+        }
+        if (topval + botval == 0 && topval < 0) {
+            if (item[0] != '1' && item[item.length - 1] != '-1') {
+                rearr.push(nowstr);
+            }
+        }
+    }
     return rearr;
 };
-parenthesegen(2);
+console.log(parenthesegen(4));

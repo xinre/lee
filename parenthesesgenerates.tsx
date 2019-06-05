@@ -1,32 +1,20 @@
 /**
- * 括号生成 未完
+ * 括号生成
  */
-
-let qeuqarr = (arr1:number[]|string[],arr2:number[]|string[]):boolean => {
-    let juagearr2:number[] = [];
-    let juagearr:number[] = [];
-    if(arr1.length==arr2.length){
-        for(let i:number = 0; i<arr1.length; i++){
-            for(let j:number = 0;j<arr2.length;j++){
-                if(juagearr.indexOf(j)==-1){
-                    if(juagearr2.indexOf(i)==-1){
-                        if(arr1[i]==arr2[j]){
-                            juagearr.push(j);
-                            juagearr2.push(i);
-                        }
-                    }
-                }
+let qeuqarr = (arr:string[],arr1:string[]):boolean => {
+    let juage:boolean=true;
+    if(arr.length!=arr1.length){
+        return false;
+    }else{
+        for(let i:number=0;i<arr.length;i++){
+            if(arr[i]!=arr1[i]){
+                juage=false;
             }
         }
-        if(arr1.length==juagearr.length){
-            return true;
-        }else{
-            return false;
-        }
-    }else{
-        return false;
+        return juage;
     }
 }
+
 let recursivestr = (sumstrarr:string[][],nowarr:string[],valuearr:number[],count:number,num:number) => {
     for(let i:number=0;i<valuearr.length;i++){
         if(count==0){
@@ -34,15 +22,15 @@ let recursivestr = (sumstrarr:string[][],nowarr:string[],valuearr:number[],count
         }
         if(count>=num*2){
             let renum = nowarr.slice(0,num*2);
-            // let juage:boolean = true;
-            // for(let f:number=0;f<sumstrarr.length;f++){
-            //     if(qeuqarr(renum,sumstrarr[f])){
-            //         juage=false;
-            //     }
-            // }
-            // if(juage){
+            let juage:boolean = true;
+            for(let f:number=0;f<sumstrarr.length;f++){
+                if(qeuqarr(renum,sumstrarr[f])){
+                    juage=false;
+                }
+            }
+            if(juage){
                 sumstrarr.push(renum);
-            // }
+            }
         }else{
             if(i!=0){
                 nowarr.pop();
@@ -68,8 +56,29 @@ let parenthesegen = (num:number):string[] => {
     let count:number = 0;
     let valuearr:number[] = [-1,1];
     recursivestr(sumstrarr,nowarr,valuearr,count,num);
-    console.log(sumstrarr);
+    for(let item of sumstrarr){
+        let topval=0;
+        let botval=0;
+        let nowstr:string='';
+        for(let items:number=0;items<item.length;items++){
+            if(Number(item[items])==1){
+                nowstr=nowstr+')';
+            }else{
+                nowstr=nowstr+'(';
+            }
+            if(items<num){
+                topval=topval+Number(item[items]);
+            }else{
+                botval=botval+Number(item[items]);
+            }
+        }
+        if(topval+botval==0&&topval<0){
+            if(item[0]!='1'&&item[item.length-1]!='-1'){
+                rearr.push(nowstr);
+            }
+        }
+    }
     return rearr;
 }
 
-parenthesegen(2);
+console.log(parenthesegen(4));
