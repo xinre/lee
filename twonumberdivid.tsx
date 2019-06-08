@@ -1,5 +1,5 @@
 /**
- * 两数相除 慢速解法
+ * 两数相除 慢速解法||可用<< 位移运算符解
  */
 let dividendFun = (dividend:number,divisor:number):number => {
     let renumber:number = 0;
