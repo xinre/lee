@@ -57,4 +57,6 @@ neBuildtwotree.insert(8);
 neBuildtwotree.insert(10);
 neBuildtwotree.insert(6);
 neBuildtwotree.insert(6);
-console.log('result:', neBuildtwotree.inOrder());
+neBuildtwotree.insert(9);
+// console.log('result:',neBuildtwotree.inOrder());
+console.log('result:', JSON.stringify(neBuildtwotree.root));
