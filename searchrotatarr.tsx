@@ -1,3 +1,4 @@
+// 搜索旋转数组
 let testarr:number[] = [1];
 
 let searchrotatarr = (testarr:number[],targetnum:number):number => {
