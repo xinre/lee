@@ -1,5 +1,6 @@
 /**
  * 跳跃游戏
+ * 需在优化算法性能不行
  */
 var testarr = [2, 0, 0];
 // const cycleFun = ( key:number , arr:number[] , resultArr:number[]) => {
@@ -35,11 +36,10 @@ var testarr = [2, 0, 0];
 //         }
 //     }
 // }
-var cycleFun = function (key, arr) {
+var cycleFun = function(key, arr) {
     if (key === arr.length - 1) {
         return true;
-    }
-    else if (key < arr.length - 1) {
+    } else if (key < arr.length - 1) {
         if (arr[key] == 0) {
             return false;
         }
@@ -51,7 +51,7 @@ var cycleFun = function (key, arr) {
     }
     return false;
 };
-var canJump = function (arr) {
+var canJump = function(arr) {
     return cycleFun(0, arr);
 };
 console.log(canJump(testarr));
