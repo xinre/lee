@@ -1,16 +1,21 @@
 /**
  * 接雨水
  */
-var rainArray = [4, 2, 3];
+var rainArray = [4, 9, 4, 5, 3, 2];
 var processFunction = function (goalArray) {
     var goalNumber = 0;
     var activeNumber = 0;
     var minNumber = null;
+    //后加参数
+    var reserveMax = 0;
+    var addNumber = 0;
+    var count = 0;
     for (var i = 0; i < goalArray.length; i++) {
         if (goalArray[i] === 0) {
             continue;
         }
         for (var h = i + 1; h < goalArray.length; h++) {
+            console.log(goalArray[i]);
             if (!minNumber) {
                 minNumber = goalArray[h];
             }
@@ -21,6 +26,7 @@ var processFunction = function (goalArray) {
                 activeNumber = 0;
                 break;
             }
+            console.log(goalArray[h], goalArray[i]);
             if (goalArray[h] < goalArray[i] && h !== goalArray.length - 1) {
                 activeNumber += goalArray[i] - goalArray[h];
             }
@@ -39,6 +45,20 @@ var processFunction = function (goalArray) {
         goalNumber += activeNumber;
         activeNumber = 0;
     }
+    for (var k = goalArray.length - 2; k >= 0; k--) {
+        if (goalArray[k] > goalArray[goalArray.length - 1]) {
+            break;
+        }
+        reserveMax = reserveMax > goalArray[k] ? reserveMax : goalArray[k];
+        count++;
+    }
+    if (count === goalArray.length - 1 || count < 1) {
+        addNumber = 0;
+    }
+    else {
+        addNumber = (count - 1) * (goalArray[goalArray.length - 1] - reserveMax);
+    }
+    goalNumber += addNumber;
     return goalNumber;
 };
 console.log(processFunction(rainArray));
