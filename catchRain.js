@@ -1,5 +1,5 @@
 /**
- * 接雨水
+ * 接雨水   这个可能错误暂时保留切换下一个
  */
 var rainArray = [4, 9, 4, 5, 3, 2];
 var processFunction = function (goalArray) {
@@ -15,7 +15,6 @@ var processFunction = function (goalArray) {
             continue;
         }
         for (var h = i + 1; h < goalArray.length; h++) {
-            console.log(goalArray[i]);
             if (!minNumber) {
                 minNumber = goalArray[h];
             }
@@ -26,7 +25,6 @@ var processFunction = function (goalArray) {
                 activeNumber = 0;
                 break;
             }
-            console.log(goalArray[h], goalArray[i]);
             if (goalArray[h] < goalArray[i] && h !== goalArray.length - 1) {
                 activeNumber += goalArray[i] - goalArray[h];
             }
