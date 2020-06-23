@@ -6,7 +6,7 @@ type Object interface {
 }
 
 type Node struct {
-	Data Object
+	Data number
 	Next *Node
 }
 
@@ -161,12 +161,31 @@ func (this *List) recursionResver() {
 	this.headNode = nowPre
 }
 
+func (this *List) sort() { // 冒泡排序
+	pre := this.headNode
+	len := this.Lenght()
+
+	for len > 0 {
+		for pre != nil {
+			if pre.Next != nil && pre.Data > pre.Next.Data {
+				saveNode := pre.Next
+				pre.Next = pre.Next.Next
+				saveNode.Next = pre
+				pre = saveNode
+			}
+			pre = pre.Next
+		}
+		len = len - 1
+	}
+
+}
+
 func main() {
 	var ListTest = List{}
-	ListTest.Append(0)
-	ListTest.Append(1)
 	ListTest.Append(2)
 	ListTest.Append(3)
+	ListTest.Append(0)
+	ListTest.Append(1)
 	ListTest.Append(4)
 	ListTest.Resver()
 	ListTest.ShowList()
