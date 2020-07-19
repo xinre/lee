@@ -1,4 +1,3 @@
-// 二分法下一次写进阶
 package main
 
 import (
@@ -25,7 +24,35 @@ func binary(arr []int, number int) int {
 	return 1
 }
 
+func recursionBinary(arr []int, number int, left int, right int) (result int) {
+	var mid int = left + (right-left)/2
+
+	if arr[mid] == number {
+		result = mid
+	} else if arr[mid] > number {
+		result = recursionBinary(arr, number, left, mid-1)
+	} else if arr[mid] < number {
+		result = recursionBinary(arr, number, mid+1, right)
+	}
+
+	return
+}
+
+func insertFind(arr []int, number int, left int, right int) (result int) {
+	var mid int = left + (number-arr[left])/(arr[right]-arr[left])*(right-left)
+
+	if arr[mid] == number {
+		result = mid
+	} else if arr[mid] > number {
+		result = recursionBinary(arr, number, left, mid-1)
+	} else if arr[mid] < number {
+		result = recursionBinary(arr, number, mid+1, right)
+	}
+
+	return
+}
+
 func main() {
 	var arr = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-	fmt.Println(binary(arr, 6))
+	fmt.Println(insertFind(arr, 5, 0, len(arr)))
 }
