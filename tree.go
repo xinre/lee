@@ -43,6 +43,95 @@ func insertTreeNode(node TreeNode, newNode *TreeNode) {
 	}
 }
 
+// min item
+func (rootTree *SearchTree) Min() *TreeNode {
+	n := rootTree.Root
+
+	if n == nil {
+		return nil
+	}
+
+	for {
+		if n.left == nil {
+			return n
+		}
+		n = n.left
+	}
+}
+
+// max item
+func (rootTree *SearchTree) Max() *TreeNode {
+	n := rootTree.Root
+
+	if n == nil {
+		return nil
+	}
+
+	for {
+		if n.right == nil {
+			return n
+		}
+		n = n.right
+	}
+}
+
+// search item
+func (rootTree *SearchTree) Search(key int) *TreeNode {
+	return SeachNode(rootTree.Root, key)
+}
+
+func SeachNode(node TreeNode, key int) *TreeNode {
+	if node == nil {
+		return nil
+	}
+
+	if node.key < key {
+		SeachNode(node.left, key)
+	} else if node.key > key {
+		SeachNode(node.right, key)
+	} else {
+		return node
+	}
+}
+
+// traverse tree
+func (rootTree *SearchTree) InOrderTraverse() {
+	inOrderTraver(rootTree.Root)
+}
+
+func inOrderTraver(n *TreeNode) {
+	if n != nil {
+		inOrderTraver(n.left, f)
+		fmt.Println(n.value, n.key)
+		inOrderTraver(n.right, f)
+	}
+}
+
+func (rootTree *SearchTree) PreOrderTraverse() {
+	preOrdertraver(rootTree.Root)
+}
+
+func preOrdertraver(n *TreeNode) {
+	if n != nil {
+		fmt.Println(n.value, n.key)
+		preOrdertraver(n.left)
+		preOrdertraver(n.right)
+	}
+}
+func (rootTree *SearchTree) PostOrderTraverse() {
+	postOrderTraver(rootTree.Root)
+}
+
+func postOrderTraver(n *TreeNode) {
+	if n != nil {
+		postOrderTraver(n.left)
+		postOrderTraver(n.right)
+		fmt.Println(n.value, n.key)
+	}
+}
+
+// next for circulation traverse
+
 func main() {
 	fmt.Println("hello, wolrld")
 }
