@@ -1,4 +1,5 @@
 // Implement a simple observer pattern for the time being
+// next my-vue observer
 
 type observeFun = {
   on: (type: string, fn: (data?: any) => any) => void
