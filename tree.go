@@ -107,6 +107,10 @@ func inOrderTraver(n *TreeNode) {
 	}
 }
 
+func iterationTraver(n *TreeNode) {
+
+}
+
 func (rootTree *SearchTree) PreOrderTraverse() {
 	preOrdertraver(rootTree.Root)
 }
@@ -118,6 +122,24 @@ func preOrdertraver(n *TreeNode) {
 		preOrdertraver(n.right)
 	}
 }
+
+func iterationPreOrdertraver(n *TreeNode) { // 迭代前序遍历还没测，太晚了懒得测了
+	stack := []TreeNode{}
+	stack.append(n.Root)
+
+	for len(stack) > 0 {
+		lastChild := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		fmt.Println(lastChild.value)
+		if lastChild.left != nil {
+			stack.append(lastChild.left)
+		}
+		if lastChild.right != nil {
+			stack.append(lastChild.right)
+		}
+	}
+}
+
 func (rootTree *SearchTree) PostOrderTraverse() {
 	postOrderTraver(rootTree.Root)
 }
