@@ -58,3 +58,7 @@ func (rootTree *CompleteTree) RecurrenceBuildTree(arr int[]) {
 
 	recurrenceFun(rootTree.Root, 0)
 }
+
+func main() {
+	
+}
