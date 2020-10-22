@@ -47,3 +47,36 @@ func buildTree(n *BalanceTree, list List, size int) {
 	n.right = buildTree(n.left, list, size-size/2-1)
 
 }
+
+func (rootTree *BalanceTree) isBalanceTree() {
+	var k = 0
+	isBalanceFun(rootTree.root, k)
+}
+
+func isBalanceFun(root *BalanceTree, k int) { // 这个方法不好会重复遍历明天下一种方法
+	if root == nil {
+		return true
+	}
+	left := depthFun(root.left)
+	right := depthFun(root.right)
+	diff := left - right
+	if diff > 1 || diff < -1 {
+		return false
+	}
+	return isBalanceFun(root.left) && isBalanceFun(root.right)
+}
+
+func depthFun(root BalanceTree) {
+	if root == nil {
+		return 0
+	}
+
+	leftLength := depthFun(root.left)
+	rightLength := depthFun(root.right)
+
+	if rightLength > leftLength {
+		return rightLength + 1
+	} else {
+		return leftLength + 1
+	}
+}
