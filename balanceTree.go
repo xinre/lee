@@ -80,3 +80,37 @@ func depthFun(root BalanceTree) {
 		return leftLength + 1
 	}
 }
+
+func (rootTree *BalanceTree) isBalanceOptimizeTree() {
+	var k = 0
+	isBalanceOptinizeFun(rootTree.root, &k)
+}
+
+func isBalanceOptinizeFun(root *BalanceTree, deth *int) {
+	if Root == nil {
+		*deth = 0
+		return true
+	}
+
+	var (
+		left  int
+		right int
+	)
+
+	if isBalanceOptinizeFun(root.left, left) &&
+		isBalanceOptinizeFun(root.right, right) {
+		diff := left - right
+		if diff <= 1 && diff >= 1 {
+			// deth = (left > right && left+1) || right+1
+			if left > right {
+				deth = left + 1
+			} else {
+				deth = right + 1
+			}
+
+			return true
+		}
+	}
+
+	return false
+}
