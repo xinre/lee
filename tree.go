@@ -43,6 +43,27 @@ func insertTreeNode(node TreeNode, newNode *TreeNode) {
 	}
 }
 
+// public ancestor
+func (rootTree *SearchTree) publicAncestor(p TreeNode, q TreeNode) {
+	var root = rootTree.Root
+	ancestorRecursion(root, p, q)
+}
+
+func ancestorRecursion(root TreeNode, p TreeNode, q TreeNode) {
+	if root == nil || root == p || root == q return root
+
+	left := ancestorRecursion(root.left, p, q)
+	right := ancestorRecursion(root.right, p, q)
+
+	if left != nil || right != nil return root
+
+	if left == nil {
+		return right
+	} 
+
+	return left
+}
+
 // min item
 func (rootTree *SearchTree) Min() *TreeNode {
 	n := rootTree.Root
