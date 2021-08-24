@@ -10,8 +10,9 @@ maxUnique = 3
 解释：
 符合条件的子串有 ab, bc, cd, de, abc, bcd, cde 。每一个子串只出现了一次，因此答案是1
 */
-const goalString = "abcdrfabhg"
-const allOccurrences: string[][] = []
+const goalString = "abcde"
+const allOccurrences:string[][] = []
+const allTargetOccurrences: (string | number)[][] = []
 let circulationNumber = 0
 
 const getMaxOccurrences: (
@@ -19,23 +20,30 @@ const getMaxOccurrences: (
   minLength: number, 
   maxLength: number, 
   maxUnique: number, 
-  circulationNumber: number
+  // circulationNumber: number
   ) => void = (
     goalString, 
     minLength, 
     maxLength, 
     maxUnique, 
-    circulationNumber
+    // circulationNumber
   ) => {
+  // for (let len = 0; len < maxLength; len++) {
   for (let i = 0; i < goalString.length; i++) {
-    if (!allOccurrences[circulationNumber]) {
-      allOccurrences[circulationNumber] = [] as string[]
-    }
-    allOccurrences[circulationNumber].push(goalString.charAt(i))
-
-    for (let j = 0; j < i; j++) {
-      if () {
-        allOccurrences[circulationNumber][j] = allOccurrences[circulationNumber][j] + goalString.charAt(j)
+    for (let j = 0; j < allTargetOccurrences.length; j++) {
+      if (allTargetOccurrences[j][1] === i - 1) {
+        allTargetOccurrences.push([allTargetOccurrences[j][0] + goalString[i], i])
       }
     }
-  }}
+
+    allTargetOccurrences.push([goalString[i], i])
+  }
+  // }
+  // 写到这基本就算做出来了，之后测试一下优化一下算法
+
+
+  console.log(allTargetOccurrences, 'allTargetOccurrences')
+}
+
+
+getMaxOccurrences(goalString, 2, 5, 3)
